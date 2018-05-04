@@ -1,0 +1,28 @@
+<HTML>
+<BODY>
+<p>
+Enter Values without dividing by 100.
+</p>
+<p>
+
+Conversion:&nbsp;<input type="text" id="Conversion" value=""><br>
+<br>
+ee<sub>p</sub>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="eep" value=""><br>
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="myFunction()"> Calculate</button>
+</p>
+
+<p id="result">Result:
+</p>
+
+<script>
+function myFunction() {
+		var ee =  document.getElementById("eep").value/100;
+    var c = document.getElementById("Conversion").value/100;
+    document.getElementById("result").innerHTML = "Result:" +Math.log((1-c*(1+ee)))/Math.log((1-c*(1-ee)));
+}
+</script>
+
+</BODY>
+</HTML>
