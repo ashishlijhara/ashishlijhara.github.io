@@ -1,0 +1,12 @@
+{
+"background_color": "#fff",
+"display": "standalone",
+"orientation":"portrait",
+"theme_color": "#fff",
+"short_name": "RSSBAttendance",
+"name": "RSSB Attendance",
+"description": "Attendance System for RSSB centers",
+"lang": "en-US",
+"start_url": "index.html",
+"scope": "/"
+}

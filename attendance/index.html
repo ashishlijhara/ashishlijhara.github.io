@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <!-- register service worker -->
+        <script type="text/javascript">
+          if ('serviceWorker' in navigator){
+            window.addEventListener('load', () => {
+               navigator.serviceWorker.register('./service-worker.js')
+            .then(() => { console.log('Service Worker Registered'); });
+           });
+         }
+        </script>
+        
+        <!-- start of Web Manifest -->
+           <link rel="manifest" href="./app.webmanifest">
+        <!-- end of Web Manifest -->
+        
+        <!-- theme-color -->
+           <meta name="theme-color" content="#fff" />
+        <!-- end-theme-color -->
+        
+    </head>
+    <body></body>
+</html>
