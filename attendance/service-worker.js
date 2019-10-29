@@ -2,6 +2,10 @@ const cacheName = 'app-v1';
 const filesToCache=[
     './index.html',
     './app.webmanifest',
+    'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css',
+    'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js',
+    'https://fonts.googleapis.com/icon?family=Material+Icons',
+    './js/mat.js',
 ];
 
 /* Start the service worker and cache all of the app's content */
