@@ -6,6 +6,8 @@ const filesToCache=[
     'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     './js/mat.js',
+    './js/zxing-reader.js',
+    './css/main.css',
 ];
 
 /* Start the service worker and cache all of the app's content */

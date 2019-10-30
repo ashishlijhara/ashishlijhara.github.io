@@ -1,0 +1,9 @@
+#video{
+    border: solid black 1px;
+    width: 300px;
+    height: 200px;
+}
+
+html, body, .my-wrapper {
+    height: 100%;
+  }

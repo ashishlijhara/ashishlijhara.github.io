@@ -35,7 +35,9 @@
          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
          <script src="./js/mat.js"></script>
-
+         <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
+         <script src="./js/codereader.js"></script>
+         <link rel="stylesheet" href="./css/main.css">
     </head>
     <body>
 
@@ -62,16 +64,32 @@
         </nav>
       </header>
 
-         <div class="container">
-               <div class="fixed-action-btn">
-                     <a class="btn-floating btn-large red hoverable pulse">
-                       <i class="large material-icons">account_circle</i>
-                     </a>
-                     <ul>
-                           <li><a class="btn-floating blue"><i class="material-icons black-text">date_range</i></a></li>
-                           <li><a class="btn-floating green"><i class="material-icons">fingerprint</i></a></li>
-                     </ul>
-                   </div>
-         </div>
-    </body>
+      <div class="my-wrapper valign-wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="center-align">
+              <video id="video" class="responsive-video"></video>
+            </div>
+          </div>
+          <div class="row">
+            <div class="center-align">
+                <a class="waves-effect waves-light btn" id="startButton">Start</a>
+                <a class="waves-effect waves-light btn" id="resetButton">Reset</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large red hoverable pulse">
+        <i class="large material-icons">account_circle</i>
+      </a>
+      <ul>
+            <li><a class="btn-floating blue"><i class="material-icons black-text">date_range</i></a></li>
+            <li><a class="btn-floating green"><i class="material-icons">fingerprint</i></a></li>
+      </ul>
+    </div>
+
+    
+
+  </body>
 </html>
