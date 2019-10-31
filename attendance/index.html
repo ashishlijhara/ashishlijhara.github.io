@@ -74,11 +74,17 @@
               <div class="center-align">
                   <a class="waves-effect waves-light btn" id="startButton">Start</a>
                   <a class="waves-effect waves-light btn" id="resetButton">Reset</a>
-                  <div id="sourceSelectPanel" style="display:none">
-                    <label for="sourceSelect">Change video source:</label>
-                    <select id="sourceSelect" style="max-width:400px">
+              </div>
+              <div class="row" style="padding-top:10px;">
+                <div class="center-align">
+                    <div id="sourceSelectPanel" style="display:none" class="col s4 offset-s4">
+                      <label for="sourceSelect">Change video source:</label>
+                    <select id="sourceSelect" class="browser-default">
                     </select>
+                    </div>
                   </div>
+                </div>
+              <div class="row">
                   <label>Result:</label>
                   <pre><code id="result"></code></pre>
               </div>
