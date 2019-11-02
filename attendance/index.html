@@ -41,9 +41,9 @@
     </head>
     <body>
       <header>
-        <nav class="nav-wrapper red">
+        <nav class="nav-wrapper red fixed">
           <div class="container">
-            <a href="" class="left brand-logo">ATTENDANCE</a>
+            <a href="" class="left brand-logo hide-on-med-and-down">ATTENDANCE</a>
             <a href="" class="sidenav-trigger" data-target="mobile-menu">
               <i class="material-icons">menu</i>
             </a>
@@ -53,6 +53,7 @@
               <li><a href="#">Export</a></li>
               <li><a href="#">Tutorial</a></li>
             </ul>
+            <a href="" class="center brand-logo show-on-medium-and-down">ATTENDANCE</a>
             <ul class="sidenav lime lighten-3" id="mobile-menu">
                 <li class = active><a href="#">Home</a></li>
                 <li><a href="#">Scan</a></li>
@@ -63,30 +64,28 @@
         </nav>
       </header>
       <div id="scanner">
+        <video id="video" class="responsive-video"></video>
         <div class="my-wrapper valign-wrapper">
           <div class="container">
             <div class="row">
               <div class="center-align">
-                <video id="video" class="responsive-video"></video>
-              </div>
-            </div>
-            <div class="row">
-              <div class="center-align">
                   <a class="waves-effect waves-light btn" id="startButton">Start</a>
                   <a class="waves-effect waves-light btn" id="resetButton">Reset</a>
+                </div>
               </div>
               <div class="row" style="padding-top:10px;">
                 <div class="center-align">
                     <div id="sourceSelectPanel" style="display:none" class="col s4 offset-s4">
                       <label for="sourceSelect">Change video source:</label>
-                    <select id="sourceSelect" class="browser-default">
-                    </select>
+                      <select id="sourceSelect" class="browser-default"></select>
                     </div>
                   </div>
                 </div>
               <div class="row">
-                  <label>Result:</label>
-                  <pre><code id="result"></code></pre>
+                  <div class="center-align">
+                    <label>Result:</label>
+                    <pre><code id="result"></code></pre>
+                  <div></div>
               </div>
             </div>
           </div>

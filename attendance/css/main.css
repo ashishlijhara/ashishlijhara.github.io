@@ -1,9 +1,14 @@
 #video{
     border: solid black 1px;
-    width: 300px;
-    height: 200px;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
 }
 
 html, body, .my-wrapper {
     height: 100%;
-  }
+}
+
+.my-wrapper{
+    position: relative;
+}
