@@ -6,3 +6,5 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Sidenav.init(elems, {edge:'left', draggable:true});
 
   });
+
+  
