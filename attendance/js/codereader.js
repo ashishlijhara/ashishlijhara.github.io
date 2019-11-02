@@ -7,7 +7,7 @@ window.addEventListener('load', function () {
       const sourceSelect = document.getElementById('switchCam')
       selectedDeviceId = videoInputDevices[0].deviceId
       startCam()
-      if (videoInputDevices.length > 1) {
+      if (videoInputDevices.length >= 1) {
         let selectedId = 0;
         sourceSelect.style.display = 'block';
         /*videoInputDevices.forEach((element) => {
@@ -17,9 +17,9 @@ window.addEventListener('load', function () {
           sourceSelect.appendChild(sourceOption)
         })*/
         sourceSelect.onclick = () => {
-          await codeReader.reset()
+          codeReader.reset()
           selectedId+=1
-          if(selectedId>videoInputDevices.length)
+          if(selectedId>=videoInputDevices.length)
             selectedId = 0
           selectedDeviceId = selectedId
           startCam()
