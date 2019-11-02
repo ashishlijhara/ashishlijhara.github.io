@@ -17,12 +17,11 @@ window.addEventListener('load', function () {
           sourceSelect.appendChild(sourceOption)
         })*/
         sourceSelect.onclick = () => {
-          codeReader.reset()
           selectedId+=1
           if(selectedId>videoInputDevices.length)
             selectedId = 0
           selectedDeviceId = selectedId
-          startCam()
+          codeReader.reset().then(()=>{startCam()});
         };
         //const sourceSelectPanel = document.getElementById('sourceSelectPanel')
         //sourceSelectPanel.style.display = 'block'
