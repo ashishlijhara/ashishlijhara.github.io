@@ -5,7 +5,8 @@ window.addEventListener('load', function () {
   codeReader.getVideoInputDevices()
     .then((videoInputDevices) => {
       const sourceSelect = document.getElementById('switchCam')
-      const selectedDeviceId = videoInputDevices[0].deviceId
+      selectedDeviceId = videoInputDevices[0].deviceId
+      startCam()
       if (videoInputDevices.length > 1) {
         let selectedId = 0;
         sourceSelect.style.display = 'block';
