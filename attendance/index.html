@@ -63,17 +63,23 @@
           </div>
         </nav>
       </header>
-      <div id="scanner">
-        <video id="video" class="responsive-video"></video>
-        <div class="my-wrapper valign-wrapper">
-          <div class="container">
-            <div class="row">
-              <div class="center-align">
+        <main>
+            <div id="scanner">
+              <video id="video" class="responsive-video"></video>
+              <a id="switchCam" style="display: none;"><i class="material-icons black-text right pad-cam" style="font-size:36px">switch_camera</i></div>
+              </a>
+        </main>
+
+        <footer>
+          <div id="scannerControls" class="my-wrapper valign-wrapper">
+            <div class="container">
+              <div class="row">
+                <div class="center-align">
                   <a class="waves-effect waves-light btn" id="startButton">Start</a>
                   <a class="waves-effect waves-light btn" id="resetButton">Reset</a>
+                  </div>
                 </div>
-              </div>
-              <div class="row" style="padding-top:10px;">
+              <!--<div class="row" style="padding-top:10px;">
                 <div class="center-align">
                     <div id="sourceSelectPanel" style="display:none" class="col s4 offset-s4">
                       <label for="sourceSelect">Change video source:</label>
@@ -86,11 +92,10 @@
                     <label>Result:</label>
                     <pre><code id="result"></code></pre>
                   <div></div>
+              </div>-->
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </footer>
     <div class="fixed-action-btn">
       <a class="btn-floating btn-large red hoverable pulse">
         <i class="large material-icons">account_circle</i>

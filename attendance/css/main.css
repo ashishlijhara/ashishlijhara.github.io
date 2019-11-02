@@ -5,10 +5,23 @@
     position: absolute;
 }
 
-html, body, .my-wrapper {
+html {
     height: 100%;
 }
 
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+}
 .my-wrapper{
     position: relative;
+}
+
+.pad-cam{
+    padding-right:25px;
+    padding-top:20px;
 }
