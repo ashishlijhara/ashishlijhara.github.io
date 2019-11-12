@@ -27,20 +27,7 @@ window.addEventListener('load', function () {
         //const sourceSelectPanel = document.getElementById('sourceSelectPanel')
         //sourceSelectPanel.style.display = 'block'
       }
-      function startCam(){
-        codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
-          if (result) {
-            console.log(result);
-            //document.getElementById('result').textContent = result.text
-            idbInstance.checkForCode(result);
-          }
-          if (err && !(err instanceof ZXing.NotFoundException)) {
-            console.error(err)
-            //document.getElementById('result').textContent = err
-          }
-        })
-        console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
-      }
+   
       function startCam(){
         codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
           if (result) {
