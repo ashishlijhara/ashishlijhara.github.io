@@ -7,7 +7,7 @@ const filesToCache=[
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     './js/mat.js',
     './js/zxing-reader.js',
-    './css/main.css',
+    './css/main.css'
     //Firebase
     //'https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js',
     //'https://www.gstatic.com/firebasejs/7.3.0/firebase-auth.js',
