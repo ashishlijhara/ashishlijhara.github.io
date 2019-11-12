@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
   let selectedDeviceId;
-  const codeReader = new ZXing.BrowserMultiFormatReader()
+  const codeReader = new ZXing.BrowserBarcodeReader()
   console.log('ZXing code reader initialized')
   codeReader.getVideoInputDevices()
     .then((videoInputDevices) => {
