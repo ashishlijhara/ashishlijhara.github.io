@@ -33,7 +33,7 @@ window.addEventListener('load', function () {
           if (result) {
             console.log(result)
             //document.getElementById('result').textContent = result.text
-            idbInstance.checkForCode(result);
+            idbInstance.checkForCode(result.text);
           }
           if (err && !(err instanceof ZXing.NotFoundException)) {
             console.error(err)

@@ -54,7 +54,6 @@ IDB.prototype.initIDB=(data)=>{
                     console.log("Error: "+event.target.errorCode);
                     };
                 });
-                
             }
         };
     }   
