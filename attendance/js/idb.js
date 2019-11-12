@@ -5,9 +5,12 @@ class IDB{
     }
 }
 
-IDB.prototype.writeFirebaseDatatoIDB = function(data){
-    var arr = data.child('Attendance').val();
-    console.log(arr[1]);
+IDB.prototype.writeFirebaseDataToIDB = function(data){
+    var arr = data;
+    var name;
+    for (name in arr){
+
+    }
 }
 
 IDB.prototype.isIDBAvailable = ()=>{
@@ -35,29 +38,37 @@ IDB.prototype.initIDB=(data)=>{
             os.deleteObjectStore("sevadars");
         }
         catch(e){
-            
+
         }
         
         var objectStore = db.createObjectStore("sevadars", {keyPath:"Sl"});
-        data.child('Attendance').val().forEach((sevadar) => {
-            var request = objectStore.add(sevadar);
-            request.onsuccess = function(event) {
-              console.log("added");
-            };
-            request.onerror= (event)=>{
-                console.log("Error: "+event.target.errorCode);
-            };
-        });
-    };
-}
+        objectStore.createIndex('Badge Number', 'Badge_No', {unique:false});
+        objectStore.transaction.oncomplete = (event)=>{
+            data.child('Attendance').val().forEach((sevadar) => {
+                var objectStore = db.transaction(["sevadars"], "readwrite").objectStore("sevadars");
+                var request = objectStore.add(sevadar);
+                request.onsuccess = (event)=>{
+                    console.log("added");
+                    };
+                request.onerror= (event)=>{
+                    console.log("Error: "+event.target.errorCode);
+                    };
+                });
+                
+            }
+        };
+    }   
 
 IDB.prototype.checkForCode=(code)=>{
     var trans = idbInstance.db.transaction(["sevadars"]);
-    var request = trans.objectStore("sevadars").get(code);
+    var sevadarIndex = trans.objectStore("sevadars").index('Badge Number');
+    var keyRng = IDBKeyRange.only(code);
+    const request = sevadarIndex.openCursor(keyRng);
     request.onerror=(event)=>{
         console.log("Error: "+event.target.errorCode);
     }
     request.onsuccess=(event)=>{
+        console.log(event.target.result.value);
         alert(code);
     }
 }
