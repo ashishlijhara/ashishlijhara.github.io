@@ -27,11 +27,17 @@ IDB.prototype.initIDB=(data)=>{
     };
 
     request.onupgradeneeded = (event) => {
-        var os = idbInstance.db.transaction(["sevadars"]).trans.objectStore("sevadars");
-        if(os){
-            idbInstance.deleteObjectStore("sevadars");
-        }
         var db = event.target.result;
+        
+        try{
+            var trans = db.transaction(["sevadars"])
+            var os = trans.objectStore("sevadars");
+            os.deleteObjectStore("sevadars");
+        }
+        catch(e){
+            
+        }
+        
         var objectStore = db.createObjectStore("sevadars", {keyPath:"Sl"});
         data.child('Attendance').val().forEach((sevadar) => {
             var request = objectStore.add(sevadar);
