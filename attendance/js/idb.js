@@ -14,8 +14,8 @@ IDB.prototype.isIDBAvailable = ()=>{
     return (this.dbAvailable = (window.indexedDB!=null));
 }
 
-IDB.prototype.initIDB=(data, version)=>{
-    var request = indexedDB.open('userstorage', version);
+IDB.prototype.initIDB=(data)=>{
+    var request = indexedDB.open('userstorage', data.child('version').val());
     request.onsuccess = (event)=>{
         console.log("DB open");
         idbInstance.db = event.target.result;
@@ -27,12 +27,15 @@ IDB.prototype.initIDB=(data, version)=>{
     };
 
     request.onupgradeneeded = (event) => {
+        var os = idbInstance.db.transaction(["sevadars"]).trans.objectStore("sevadars");
+        if(os){
+            idbInstance.deleteObjectStore("sevadars");
+        }
         var db = event.target.result;
         var objectStore = db.createObjectStore("sevadars", {keyPath:"Sl"});
         data.child('Attendance').val().forEach((sevadar) => {
             var request = objectStore.add(sevadar);
             request.onsuccess = function(event) {
-              // event.target.result === customer.ssn;
               console.log("added");
             };
             request.onerror= (event)=>{

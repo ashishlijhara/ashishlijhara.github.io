@@ -11,7 +11,7 @@ var firebaseConfig = {
   database.once('value').then(function (snap) {
     //console.log('snap.val()', snap.val());
     if(idbInstance.isIDBAvailable()){
-        idbInstance.initIDB(snap,1); //!Todo: Add automated version update. Or switch to firestore.
+        idbInstance.initIDB(snap); 
         //idbInstance.writeFirebaseDatatoIDB(snap);//!Todo: Add automated version update.//!Todo: Add automated version update. Or switch to firestore.
         
       }
