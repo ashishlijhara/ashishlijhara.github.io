@@ -30,8 +30,9 @@ window.addEventListener('load', function () {
       function startCam(){
         codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
           if (result) {
-            console.log(result)
+            console.log(result);
             //document.getElementById('result').textContent = result.text
+            idbInstance.checkForCode(result);
           }
           if (err && !(err instanceof ZXing.NotFoundException)) {
             console.error(err)
@@ -45,6 +46,7 @@ window.addEventListener('load', function () {
           if (result) {
             console.log(result)
             //document.getElementById('result').textContent = result.text
+            idbInstance.checkForCode(result);
           }
           if (err && !(err instanceof ZXing.NotFoundException)) {
             console.error(err)
