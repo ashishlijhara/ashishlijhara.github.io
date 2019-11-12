@@ -8,6 +8,11 @@ const filesToCache=[
     './js/mat.js',
     './js/zxing-reader.js',
     './css/main.css',
+    //Firebase
+    //'https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js',
+    //'https://www.gstatic.com/firebasejs/7.3.0/firebase-auth.js',
+    //'https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js',
+    //'./js/init-firebase.js',
 ];
 
 /* Start the service worker and cache all of the app's content */
