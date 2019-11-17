@@ -1,6 +1,7 @@
 var firebaseConfig = {
     apiKey: "AIzaSyCsd23B7XG4CXp8BmX3jt5KPfy1IgMXCIE",
     authDomain: "turnoutdb.firebaseapp.com",
+    projectId:"turnoutdb",
     databaseURL: "https://turnoutdb.firebaseio.com",
     storageBucket: "turnoutdb.appspot.com"
   };

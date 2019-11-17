@@ -2,6 +2,8 @@ class IDB{
     constructor(){
         this.db = null;
         this.dbAvailable = false;
+
+        this.localStore = null;
     }
 }
 
@@ -18,11 +20,13 @@ IDB.prototype.isIDBAvailable = ()=>{
 }
 
 IDB.prototype.initIDB=(data)=>{
+    
     var request = indexedDB.open('userstorage', data.child('version').val());
     request.onsuccess = (event)=>{
         console.log("DB open");
         idbInstance.db = event.target.result;
         //idbInstance.checkForCode("DL0860GA0121");
+        idbInstance.initLocalStore();
     };
 
     request.onerror = (event)=>{
@@ -31,7 +35,6 @@ IDB.prototype.initIDB=(data)=>{
 
     request.onupgradeneeded = (event) => {
         var db = event.target.result;
-        
         try{
             var trans = db.transaction(["sevadars"])
             var os = trans.objectStore("sevadars");
@@ -70,4 +73,14 @@ IDB.prototype.checkForCode=(code)=>{
         console.log(event.target.result.value);
         alert(code);
     }
+}
+
+IDB.prototype.initLocalStore = function(){
+    var getDateTime = firebase.functions().httpsCallable('getDateTime');
+    getDateTime().then(function(result) {
+      var sanitizedMessage = result.data.text;
+      console.log(sanitizedMessage);
+      //var request = indexedDB.open('', );
+    });
+    
 }
