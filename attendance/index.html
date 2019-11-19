@@ -53,19 +53,28 @@
          <script defer src="./js/init-firebase.js"></script>
          <!--end Firebase-->
         <script src="./js/firefunction.js"></script>
+        <script src="./js/FABActions.js"></script>
         <!--IndexedDB-->
         <script src="./js/idb.js"></script>
         <!--end IndexedDB-->
          <link rel="stylesheet" href="./css/main.css">
          <script>
-           var idbInstance = new IDB();
+            var idbInstance = new IDB();
+            /*window.addEventListener('online', handleConnection);
+            window.addEventListener('offline', handleConnection);
+
+            function handleConnection(){
+              if(navigator.onLine){
+                indexedDB
+              }
+            }*/
          </script>
     </head>
     <body>
       <header>
         <nav class="nav-wrapper red fixed">
           <div class="container">
-            <a href="" class="left brand-logo hide-on-med-and-down">ATTENDANCE</a>
+            <!--<a href="" class="left brand-logo hide-on-med-and-down">ATTENDANCE</a>-->
             <a href="" class="sidenav-trigger" data-target="mobile-menu">
               <i class="material-icons">menu</i>
             </a>
@@ -73,13 +82,14 @@
               <li class="active"><a href="#">Home</a></li>
               <li><a href="#">Scan</a></li>
               <li><a href="#">Export</a></li>
+              <li><a href="#">Upload</a></li>
               <li><a href="#">Tutorial</a></li>
             </ul>
             <a href="" class="center brand-logo hide-on-large-only">ATTENDANCE</a>
             <ul class="sidenav lime lighten-3" id="mobile-menu">
                 <li class = active><a href="#">Home</a></li>
                 <li><a href="#">Scan</a></li>
-                <li><a href="#">Export</a></li>
+                <li><a href="#">Upload</a></li>
                 <li><a href="#">Tutorial</a></li>
             </ul>
           </div>
@@ -123,8 +133,9 @@
         <i class="large material-icons">account_circle</i>
       </a>
       <ul>
-        <li><a class="btn-floating blue"><i class="material-icons black-text">date_range</i></a></li>
+        <li><a class="btn-floating blue hide-on-med-and-down"><i class="material-icons black-text">date_range</i></a></li>
         <li><a class="btn-floating green"><i class="material-icons">fingerprint</i></a></li>
+        <li><a id="upload" class="btn-floating green"><i class="material-icons">cloud_upload</i></a></li>
       </ul>
     </div>
   </body>
