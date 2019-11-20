@@ -9,12 +9,19 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 
   var database = firebase.database().ref().child('1o9ZHQySaALY72ZbIrGTbWUnAKNvNvnElIBBp4JNSl6o');
-  database.once('value').then(function (snap) {
+  database.child('Attendance').once('value').then(function (snap) {
     //console.log('snap.val()', snap.val());
     if(idbInstance.isIDBAvailable()){
-        idbInstance.initIDB(snap); 
-        //idbInstance.writeFirebaseDataToIDB(snap);//!Todo: Add automated version update.//!Todo: Add automated version update. Or switch to firestore.
-        
+      database.child('version').once('value').then(function (verSnap){
+          idbInstance.initIDB(snap, verSnap.val());
+        });      
       }
-    firebase.database().goOffline();
  });
+
+function writeToFirebase(tablename, data){
+  var date = tablename.replace("/", "-").replace("/", "-");
+  data.forEach(element => {
+    var keyRef = database.child(date);
+    keyRef.child(element.Sl).set(element);
+  });
+ }

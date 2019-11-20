@@ -4,6 +4,7 @@ class IDB{ //!TODO: Reduce to single database - Data can be directly cached into
         this.dbAvailable = false;
         this.timestamp = this.getTimeStamp();
         this.localStore = null;
+        this.dbName="";
     }
 }
 
@@ -41,8 +42,8 @@ IDB.prototype.isIDBAvailable = ()=>{
     return (this.dbAvailable = (window.indexedDB!=null));
 }
 
-IDB.prototype.initIDB=(data)=>{
-    var request = indexedDB.open('userstorage', data.child('version').val());
+IDB.prototype.initIDB=(data, version)=>{
+    var request = indexedDB.open('userstorage', version);
     request.onsuccess = (event)=>{
         console.log("DB open");
         idbInstance.db = event.target.result;
@@ -68,7 +69,7 @@ IDB.prototype.initIDB=(data)=>{
         var objectStore = db.createObjectStore("sevadars", {keyPath:"Sl"});
         objectStore.createIndex('Badge_No', 'Badge_No', {unique:false});
         objectStore.transaction.oncomplete = (event)=>{
-            data.child('Attendance').val().forEach((sevadar) => {
+            data.val().forEach((sevadar) => {
                 var objectStore = db.transaction(["sevadars"], "readwrite").objectStore("sevadars");
                 var request = objectStore.add(sevadar);
                 request.onsuccess = (event)=>{
@@ -107,7 +108,8 @@ IDB.prototype.initLocalStore = function(){
     var me = this;
     GetFirebaseDateTime.then(data=>{
         me.timestamp = me.getTimeStamp();
-        var request = indexedDB.open(data.split(', ')[0],1);
+        me.dbName = data.split(', ')[0];
+        var request = indexedDB.open(me.dbName,1);
         request.onsuccess = event=>{
           console.log("localstore ready");
             me.localStore = event.target.result;
@@ -158,7 +160,11 @@ IDB.prototype.processUpload = ()=>{
         if(cursor){
             if(cursor.value.Shift_1==="P"||cursor.value.Shift_2==="P"||cursor.value.Shift_3==="P"||cursor.value.Shift_4==="P")
                 uploadData.push(cursor.value);
+            cursor.continue();
+        }
+        else{
+            writeToFirebase(idbInstance.dbName, uploadData);
         }
     };
-    console.log(uploadData);
+    //console.log(uploadData);
 }
