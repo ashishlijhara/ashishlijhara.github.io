@@ -58,9 +58,9 @@ IDB.prototype.initIDB=(data, version)=>{
     request.onupgradeneeded = (event) => {
         var db = event.target.result;
         try{
-            var trans = db.transaction(["sevadars"])
-            var os = trans.objectStore("sevadars");
-            os.deleteObjectStore("sevadars");
+            //var trans = db.transaction(["sevadars"], "readwrite")
+            //var os = trans.objectStore("sevadars");
+            db.deleteObjectStore("sevadars");
         }
         catch(e){
 
