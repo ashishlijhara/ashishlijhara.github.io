@@ -59,14 +59,20 @@
          <link rel="stylesheet" href="./css/main.css">
          <script>
             var idbInstance = new IDB();
-            /*window.addEventListener('online', handleConnection);
-            window.addEventListener('offline', handleConnection);
-
-            function handleConnection(){
-              if(navigator.onLine){
-                indexedDB
-              }
-            }*/
+            hideAll=()=>{
+              codeReader.reset()
+              document.getElementById('home').style.display = 'none'
+              document.getElementById('scanner').style.display = 'none'
+            }
+            scan=()=>{
+              hideAll()
+              document.getElementById('scanner').style.display = 'block'
+              startCam()
+            }
+            home=()=>{
+              hideAll()
+              document.getElementById('home').style.display = 'block'
+            }
          </script>
     </head>
     <body>
@@ -76,29 +82,33 @@
       <header>
         <nav class="nav-wrapper red fixed">
           <div class="container">
-            <a href="" class="left brand-logo hide-on-med-and-down">ATTENDANCE</a>
-            <a href="" class="sidenav-trigger" data-target="mobile-menu">
+            <a class="left brand-logo hide-on-med-and-down">ATTENDANCE</a>
+            <a class="sidenav-trigger" data-target="mobile-menu">
               <i class="material-icons">menu</i>
             </a>
             <ul class="right hide-on-med-and-down">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">Scan</a></li>
+              <li><a onclick="home()">Home</a></li>
+              <li><a onclick="scan()">Scan</a></li>
               <li><a href="#">Export</a></li>
-              <li><a href="#">Upload</a></li>
+              <li><a class="upload_data">Upload</a></li>
               <li><a href="#">Tutorial</a></li>
             </ul>
-            <a href="" class="center brand-logo hide-on-large-only">ATTENDANCE</a>
+            <a class="center brand-logo hide-on-large-only">ATTENDANCE</a>
             <ul class="sidenav lime lighten-3" id="mobile-menu">
-                <li class = active><a href="#">Home</a></li>
-                <li><a href="#">Scan</a></li>
-                <li><a href="#">Upload</a></li>
+                <li><a onclick="home()">Home</a></li>
+                <li><a onclick="scan()">Scan</a></li>
+                <li><a class="upload_data">Upload</a></li>
                 <li><a href="#">Tutorial</a></li>
             </ul>
           </div>
         </nav>
       </header>
         <main>
-            <div id="scanner">
+          <div id="home" class="center-align" style="display:block">
+            <h2>Instructions</h2>
+            <p>Click on scan to begin scanning.</p>
+          </div>
+            <div id="scanner" style="display:none">
               <video id="video" class="responsive-video"></video>
               <a id="switchCam" style="display:none;" class="waves-effect waves-light btn right"><i class="material-icons" style="font-size:36px">switch_camera</i></div>
               </a>
@@ -136,8 +146,8 @@
       </a>
       <ul>
         <li><a class="btn-floating blue hide-on-med-and-down"><i class="material-icons black-text">date_range</i></a></li>
-        <li><a class="btn-floating green"><i class="material-icons">fingerprint</i></a></li>
-        <li><a id="upload" class="btn-floating green"><i class="material-icons">cloud_upload</i></a></li>
+        <li><a onclick="scan()" class="btn-floating green"><i class="material-icons">fingerprint</i></a></li>
+        <li><a class="btn-floating green upload_data"><i class="material-icons">cloud_upload</i></a></li>
       </ul>
     </div>
   </body>

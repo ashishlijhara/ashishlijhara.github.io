@@ -1,12 +1,14 @@
+var codereader;
+let selectedDeviceId;
 window.addEventListener('load', function () {
-  let selectedDeviceId;
-  const codeReader = new ZXing.BrowserBarcodeReader()
+  
+  codeReader = new ZXing.BrowserBarcodeReader()
   console.log('ZXing code reader initialized')
   codeReader.getVideoInputDevices()
     .then((videoInputDevices) => {
       const sourceSelect = document.getElementById('switchCam')
       selectedDeviceId = videoInputDevices[0].deviceId
-      startCam()
+      //startCam()
       if (videoInputDevices.length > 1) {
         let selectedId = 0;
         sourceSelect.style.display = 'block';
@@ -27,21 +29,6 @@ window.addEventListener('load', function () {
         //const sourceSelectPanel = document.getElementById('sourceSelectPanel')
         //sourceSelectPanel.style.display = 'block'
       }
-   
-      function startCam(){
-        codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
-          if (result) {
-            console.log(result)
-            //document.getElementById('result').textContent = result.text
-            idbInstance.checkForCode(result.text);
-          }
-          if (err && !(err instanceof ZXing.NotFoundException)) {
-            console.error(err);
-            //document.getElementById('result').textContent = err
-          }
-        })
-        console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
-      }
       document.getElementById('startButton').addEventListener('click', () => {
         startCam()
       })
@@ -54,5 +41,19 @@ window.addEventListener('load', function () {
     .catch((err) => {
       console.error(err)
     })
-
 })
+
+function startCam(){
+  codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
+    if (result) {
+      console.log(result)
+      //document.getElementById('result').textContent = result.text
+      idbInstance.checkForCode(result.text);
+    }
+    if (err && !(err instanceof ZXing.NotFoundException)) {
+      console.error(err);
+      //document.getElementById('result').textContent = err
+    }
+  })
+  console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
+}
