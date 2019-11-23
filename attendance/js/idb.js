@@ -143,9 +143,9 @@ IDB.prototype.initLocalStore = function(){
                         localObjectStore.add(cursor.value);
                         cursor.continue();
                     }
-                    else{
+                    /*else{
                         me.checkForCode("DL0860GA0121");
-                   }
+                   }*/
                 };
             };
         };
