@@ -14,8 +14,8 @@ const filesToCache=[
     './js/idb.js',
     './js/codereader.js',
     './js/FABActions.js',
-    './js/firefunctions.js',
     './js/init-firebase.js',
+    './js/firefunction.js',
     './index.html'
 ];
 
