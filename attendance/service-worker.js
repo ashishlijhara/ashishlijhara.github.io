@@ -1,4 +1,4 @@
-const cacheName = 'app-v1';
+const cacheName = 'app-v2';
 const filesToCache=[
     './app.webmanifest',
     'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css',
