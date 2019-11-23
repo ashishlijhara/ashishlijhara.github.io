@@ -113,7 +113,7 @@ IDB.prototype.initLocalStore = function(){
         request.onsuccess = event=>{
           console.log("localstore ready");
             me.localStore = event.target.result;
-            me.checkForCode("DL0860GA0121");
+            //me.checkForCode("DL0860GA0121");
         };
 
         request.onerror=event=>{
