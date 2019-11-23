@@ -69,8 +69,8 @@ IDB.prototype.initIDB=(data, version)=>{
         var objectStore = db.createObjectStore("sevadars", {keyPath:"Sl"});
         objectStore.createIndex('Badge_No', 'Badge_No', {unique:false});
         objectStore.transaction.oncomplete = (event)=>{
+            var objectStore = db.transaction(["sevadars"], "readwrite").objectStore("sevadars");
             data.val().forEach((sevadar) => {
-                var objectStore = db.transaction(["sevadars"], "readwrite").objectStore("sevadars");
                 var request = objectStore.add(sevadar);
                 request.onsuccess = (event)=>{
                     console.log("added");

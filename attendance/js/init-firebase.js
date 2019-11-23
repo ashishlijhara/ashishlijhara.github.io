@@ -12,8 +12,8 @@ var firebaseConfig = {
   database.child('Attendance').once('value').then(function (snap) {
     //console.log('snap.val()', snap.val());
     if(idbInstance.isIDBAvailable()){
-      database.child('version').once('value').then(function (verSnap){
-          idbInstance.initIDB(snap, verSnap.val());
+      database.child('version').once('value').then(function (verSnap){  
+        idbInstance.initIDB(snap, verSnap.val());
         });      
       }
  });
