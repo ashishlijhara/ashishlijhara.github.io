@@ -44,7 +44,6 @@
 
          <!--Firebase-->
          <script defer src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
-
          <script defer src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
          <script defer src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
          <script defer src="https://www.gstatic.com/firebasejs/7.4.0/firebase-functions.js"></script>
@@ -71,6 +70,9 @@
          </script>
     </head>
     <body>
+        <div id="uploadIndicator" class="progress" style="display:none">
+            <div class="indeterminate"></div>
+        </div>
       <header>
         <nav class="nav-wrapper red fixed">
           <div class="container">

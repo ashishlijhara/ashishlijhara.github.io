@@ -91,6 +91,7 @@ IDB.prototype.checkForCode=(code)=>{
     var me = this;
     request.onerror=(event)=>{
         console.log("Error: "+event.target.errorCode);
+        alert("Record not found!");
     }
     request.onsuccess=(event)=>{
         event.target.result.value.Shift_1 = idbInstance.getShift(2,8);
@@ -100,6 +101,7 @@ IDB.prototype.checkForCode=(code)=>{
         var updateRequest = idbInstance.localStore.transaction(["sevadars"], "readwrite").objectStore("sevadars").put(event.target.result.value);
         updateRequest.onsuccess = event=>{
             console.log("record updated");
+            alert("Record Updated!");
         }
     }
 }

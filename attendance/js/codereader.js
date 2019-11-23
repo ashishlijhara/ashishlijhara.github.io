@@ -36,7 +36,7 @@ window.addEventListener('load', function () {
             idbInstance.checkForCode(result.text);
           }
           if (err && !(err instanceof ZXing.NotFoundException)) {
-            console.error(err)
+            console.error(err);
             //document.getElementById('result').textContent = err
           }
         })
@@ -48,7 +48,7 @@ window.addEventListener('load', function () {
       document.getElementById('resetButton').addEventListener('click', () => {
         codeReader.reset()
         //document.getElementById('result').textContent = '';
-        console.log('Reset.')
+        console.log('Reset.');
       })
     })
     .catch((err) => {
