@@ -1,6 +1,5 @@
 const cacheName = 'app-v1';
 const filesToCache=[
-    './index.html',
     './app.webmanifest',
     'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css',
     'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js',
@@ -16,7 +15,8 @@ const filesToCache=[
     './js/codereader.js',
     './js/FABActions.js',
     './js/firefunctions.js',
-    './js/init-firebase.js'
+    './js/init-firebase.js',
+    './index.html'
     //Firebase
     //'https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js',
     //'https://www.gstatic.com/firebasejs/7.3.0/firebase-auth.js',
