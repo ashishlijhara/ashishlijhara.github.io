@@ -48,7 +48,7 @@ IDB.prototype.initIDB=(data, version)=>{
         console.log("DB open");
         idbInstance.db = event.target.result;
         //idbInstance.checkForCode("DL0860GA0121");
-        idbInstance.initLocalStore();
+        
     };
 
     request.onerror = (event)=>{
@@ -69,9 +69,9 @@ IDB.prototype.initIDB=(data, version)=>{
         var objectStore = db.createObjectStore("sevadars", {keyPath:"Sl"});
         objectStore.createIndex('Badge_No', 'Badge_No', {unique:false});
         objectStore.transaction.oncomplete = (event)=>{
-            var objectStore = db.transaction(["sevadars"], "readwrite").objectStore("sevadars");
+            var tx = db.transaction(["sevadars"], "readwrite");
             data.val().forEach((sevadar) => {
-                var request = objectStore.add(sevadar);
+                var request = tx.objectStore("sevadars").add(sevadar);
                 request.onsuccess = (event)=>{
                     //console.log("added");
                     };
@@ -79,6 +79,12 @@ IDB.prototype.initIDB=(data, version)=>{
                     console.log("Error: "+event.target.errorCode);
                     };
                 });
+                tx.oncomplete=()=>{
+                    idbInstance.initLocalStore();
+                    console.log("added");
+                    document.getElementById('uploadIndicator').style.display = 'none';
+                    home();
+                }
             }
         };
     }   
@@ -122,13 +128,12 @@ IDB.prototype.initLocalStore = function(){
         request.onsuccess = event=>{
           console.log("localstore ready");
           idbInstance.localStore = event.target.result;
-          idbInstance.checkForCode("DL0860GA0121");
         };
 
         request.onerror=event=>{
             alert("Unable to initialize the local store");
         };
-        /*request.onupgradeneeded=event=>{
+        request.onupgradeneeded=event=>{
             var db = event.target.result;
             var objectStore = db.createObjectStore("sevadars", {keyPath:"Sl"});
             objectStore.createIndex('Badge_No', 'Badge_No', {unique:false});
@@ -137,7 +142,8 @@ IDB.prototype.initLocalStore = function(){
             //objectStore.createIndex('S_3','S_3',{unique:false});
             //objectStore.createIndex('S_4','S_4',{unique:false});
             objectStore.transaction.oncomplete=event=>{
-                var trans = idbInstance.db.transaction(['sevadars']);
+                idbInstance.checkForCode("DL0860GA0121");
+                /*var trans = idbInstance.db.transaction(['sevadars']);
                 var objectStore = trans.objectStore('sevadars');
                 objectStore.openCursor().onsuccess=event=>{
                     var cursor = event.target.result;
@@ -150,9 +156,9 @@ IDB.prototype.initLocalStore = function(){
                         localObjectStore.add(cursor.value);
                         cursor.continue();
                     }
-                };
+                };*/
             };
-        };*/
+        };
     });
 }
 

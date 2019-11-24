@@ -46,6 +46,8 @@ window.addEventListener('load', function () {
     .catch((err) => {
       console.error(err)
     })
+
+    hideAll()
 })
 
 function startCam(){
