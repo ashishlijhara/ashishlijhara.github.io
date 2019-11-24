@@ -73,7 +73,7 @@ IDB.prototype.initIDB=(data, version)=>{
                 var objectStore = db.transaction(["sevadars"], "readwrite").objectStore("sevadars");
                 var request = objectStore.add(sevadar);
                 request.onsuccess = (event)=>{
-                    console.log("added");
+                    //console.log("added");
                     };
                 request.onerror= (event)=>{
                     console.log("Error: "+event.target.errorCode);
@@ -84,7 +84,7 @@ IDB.prototype.initIDB=(data, version)=>{
     }   
 
 IDB.prototype.checkForCode=(code)=>{
-    var trans = idbInstance.localStore.transaction(["sevadars"]);
+    var trans = idbInstance.db.transaction(["sevadars"]);
     var sevadarIndex = trans.objectStore("sevadars").index('Badge_No');
     var keyRng = IDBKeyRange.only(code);
     const request = sevadarIndex.openCursor(keyRng);
@@ -94,6 +94,10 @@ IDB.prototype.checkForCode=(code)=>{
         alert("Record not found!");
     }
     request.onsuccess=(event)=>{
+        if(event.target.result.value == null){
+            alert('Record not found!')
+            return
+        }
         event.target.result.value.Shift_1 = idbInstance.getShift(2,8);
         event.target.result.value.Shift_2 = idbInstance.getShift(8,14);
         event.target.result.value.Shift_3 = idbInstance.getShift(14,20);
@@ -103,25 +107,28 @@ IDB.prototype.checkForCode=(code)=>{
             console.log("record updated");
             alert("Record Updated!");
         }
+        updateRequest.onerror = event=>{
+            console.log("Error: "+event.target.errorCode);
+        }
     }
 }
 
 IDB.prototype.initLocalStore = function(){
-    var me = this;
+    //var me = this;
     GetFirebaseDateTime.then(data=>{
-        me.timestamp = me.getTimeStamp();
-        me.dbName = data.split(', ')[0];
-        var request = indexedDB.open(me.dbName,1);
+        idbInstance.timestamp = idbInstance.getTimeStamp();
+        idbInstance.dbName = data.split(', ')[0];
+        var request = indexedDB.open(idbInstance.dbName,1);
         request.onsuccess = event=>{
           console.log("localstore ready");
-            me.localStore = event.target.result;
-            //me.checkForCode("DL0860GA0121");
+          idbInstance.localStore = event.target.result;
+          idbInstance.checkForCode("DL0860GA0121");
         };
 
         request.onerror=event=>{
             alert("Unable to initialize the local store");
         };
-        request.onupgradeneeded=event=>{
+        /*request.onupgradeneeded=event=>{
             var db = event.target.result;
             var objectStore = db.createObjectStore("sevadars", {keyPath:"Sl"});
             objectStore.createIndex('Badge_No', 'Badge_No', {unique:false});
@@ -130,7 +137,7 @@ IDB.prototype.initLocalStore = function(){
             //objectStore.createIndex('S_3','S_3',{unique:false});
             //objectStore.createIndex('S_4','S_4',{unique:false});
             objectStore.transaction.oncomplete=event=>{
-                var trans = me.db.transaction(['sevadars']);
+                var trans = idbInstance.db.transaction(['sevadars']);
                 var objectStore = trans.objectStore('sevadars');
                 objectStore.openCursor().onsuccess=event=>{
                     var cursor = event.target.result;
@@ -143,12 +150,9 @@ IDB.prototype.initLocalStore = function(){
                         localObjectStore.add(cursor.value);
                         cursor.continue();
                     }
-                    /*else{
-                        me.checkForCode("DL0860GA0121");
-                   }*/
                 };
             };
-        };
+        };*/
     });
 }
 
