@@ -100,7 +100,7 @@ IDB.prototype.checkForCode=(code)=>{
         alert("Record not found!");
     }
     request.onsuccess=(event)=>{
-        if(event.target.result.value == null){
+        if(event.target.result == null){
             alert('Record not found!')
             return
         }
