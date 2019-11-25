@@ -48,7 +48,9 @@ IDB.prototype.initIDB=(data, version)=>{
         console.log("DB open");
         idbInstance.db = event.target.result;
         //idbInstance.checkForCode("DL0860GA0121");
-        
+        if(event.target.result.version==version){
+            idbReady();
+        }
     };
 
     request.onerror = (event)=>{
@@ -82,8 +84,7 @@ IDB.prototype.initIDB=(data, version)=>{
                 tx.oncomplete=()=>{
                     idbInstance.initLocalStore();
                     console.log("added");
-                    document.getElementById('uploadIndicator').style.display = 'none';
-                    home();
+                    idbReady();
                 }
             }
         };
@@ -145,7 +146,7 @@ IDB.prototype.initLocalStore = function(){
             //objectStore.createIndex('S_3','S_3',{unique:false});
             //objectStore.createIndex('S_4','S_4',{unique:false});
             objectStore.transaction.oncomplete=event=>{
-                idbInstance.checkForCode("DL0860GA0121");
+                //idbInstance.checkForCode("DL0860GA0121");
                 /*var trans = idbInstance.db.transaction(['sevadars']);
                 var objectStore = trans.objectStore('sevadars');
                 objectStore.openCursor().onsuccess=event=>{

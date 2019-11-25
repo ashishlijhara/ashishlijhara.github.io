@@ -59,6 +59,11 @@
          <link rel="stylesheet" href="./css/main.css">
          <script>
             var idbInstance = new IDB();
+            idbReady=()=>{
+              document.getElementById('loading').style.display = 'none';
+              document.getElementById('content').style.display = 'block';
+              home();
+            }
             hideAll=()=>{
               codeReader.reset()
               document.getElementById('home').style.display = 'none'
@@ -91,81 +96,129 @@
          </script>
     </head>
     <body>
+      <div id="loading">
         <div id="uploadIndicator" class="progress" style="margin-top:0px;margin-bottom:0px;display:block">
             <div class="indeterminate"></div>
         </div>
-      <header>
-        <nav class="nav-wrapper red fixed">
-          <div class="container">
-            <a class="left brand-logo hide-on-med-and-down">ATTENDANCE</a>
-            <a class="sidenav-trigger" data-target="mobile-menu">
-              <i class="material-icons">menu</i>
-            </a>
-            <ul class="right hide-on-med-and-down">
-              <li><a onclick="home()">Home</a></li>
-              <li><a onclick="scan()">Scan</a></li>
-              <li><a href="#">Export</a></li>
-              <li><a class="upload_data">Upload</a></li>
-              <li><a href="#">Tutorial</a></li>
-            </ul>
-            <a class="center brand-logo hide-on-large-only">ATTENDANCE</a>
-            <ul class="sidenav lime lighten-3" id="mobile-menu">
+        <div style="text-align:center;" >
+            <h4>Please make sure you are connect to the intenet.</h4><br /><h5>Preparing App. Please Wait..</h3>
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+          
+                <div class="spinner-layer spinner-red">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+          
+                <div class="spinner-layer spinner-yellow">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+          
+                <div class="spinner-layer spinner-green">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+      <div id="content" style="display:none">
+        <header>
+          <nav class="nav-wrapper red fixed">
+            <div class="container">
+              <a class="left brand-logo hide-on-med-and-down">ATTENDANCE</a>
+              <a class="sidenav-trigger" data-target="mobile-menu">
+                <i class="material-icons">menu</i>
+              </a>
+              <ul class="right hide-on-med-and-down">
                 <li><a onclick="home()">Home</a></li>
                 <li><a onclick="scan()">Scan</a></li>
+                <li><a href="#">Export</a></li>
                 <li><a class="upload_data">Upload</a></li>
                 <li><a href="#">Tutorial</a></li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-        <main>
-          <div id="home" class="center-align" style="display:block">
-            <h2>Instructions</h2>
-            <p>Click on scan to begin scanning.</p>
-          </div>
-            <div id="scanner" class="center-align"style="display:none">
-                <video id="video" class="responsive-video" width="300" height="200" style="border: 1px solid gray"></video>
-                <canvas id="barcodecanvas" style="position:absolute;z-index:10;"></canvas>
-                <a id="switchCam" style="display:none;" class="waves-effect waves-light btn right"><i class="material-icons" style="font-size:36px">switch_camera</i></div>
-                </a>
-          </div>
-        </main>
-
-        <footer id="footer" style="display:hidden">
-          <div id="scannerControls" class="my-wrapper valign-wrapper">
-            <div class="container">
-              <div class="row">
-                <div class="center-align">
-                  <a class="waves-effect waves-light btn" id="startButton">Start</a>
-                  <a class="waves-effect waves-light btn" id="resetButton">Reset</a>
-                  </div>
+              </ul>
+              <a class="center brand-logo hide-on-large-only">ATTENDANCE</a>
+              <ul class="sidenav lime lighten-3" id="mobile-menu">
+                  <li><a onclick="home()">Home</a></li>
+                  <li><a onclick="scan()">Scan</a></li>
+                  <li><a class="upload_data">Upload</a></li>
+                  <li><a href="#">Tutorial</a></li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+          <main>
+            <div id="home" class="center-align" style="display:block">
+              <h2>Instructions</h2>
+              <p>Click on scan to begin scanning.</p>
+            </div>
+              <div id="scanner" class="center-align"style="display:none">
+                  <video id="video" class="responsive-video" width="300" height="200" style="border: 1px solid gray"></video>
+                  <canvas id="barcodecanvas" style="position:absolute;z-index:10;"></canvas>
+                  <a id="switchCam" style="display:none;" class="waves-effect waves-light btn right"><i class="material-icons" style="font-size:36px">switch_camera</i>
+                  </a>
                 </div>
-              <!--<div class="row" style="padding-top:10px;">
-                <div class="center-align">
-                    <div id="sourceSelectPanel" style="display:none" class="col s4 offset-s4">
-                      <label for="sourceSelect">Change video source:</label>
-                      <select id="sourceSelect" class="browser-default"></select>
+          </main>
+
+          <footer id="footer" style="display:hidden">
+            <div id="scannerControls" class="my-wrapper valign-wrapper">
+              <div class="container">
+                <div class="row">
+                  <div class="center-align">
+                    <a class="waves-effect waves-light btn" id="startButton">Start</a>
+                    <a class="waves-effect waves-light btn" id="resetButton">Reset</a>
                     </div>
                   </div>
-                </div>
-              <div class="row">
+                <!--<div class="row" style="padding-top:10px;">
                   <div class="center-align">
-                    <label>Result:</label>
-                    <pre><code id="result"></code></pre>
-                  <div></div>
-              </div>-->
+                      <div id="sourceSelectPanel" style="display:none" class="col s4 offset-s4">
+                        <label for="sourceSelect">Change video source:</label>
+                        <select id="sourceSelect" class="browser-default"></select>
+                      </div>
+                    </div>
+                  </div>
+                <div class="row">
+                    <div class="center-align">
+                      <label>Result:</label>
+                      <pre><code id="result"></code></pre>
+                    <div></div>
+                </div>-->
+                </div>
               </div>
-            </div>
-          </footer>
-    <div class="fixed-action-btn">
-      <a class="btn-floating btn-large red hoverable pulse">
-        <i class="large material-icons">account_circle</i>
-      </a>
-      <ul>
-        <li><a class="btn-floating blue hide-on-med-and-down"><i class="material-icons black-text">date_range</i></a></li>
-        <li><a onclick="scan()" class="btn-floating green"><i class="material-icons">fingerprint</i></a></li>
-        <li><a class="btn-floating green upload_data"><i class="material-icons">cloud_upload</i></a></li>
-      </ul>
+            </footer>
+      <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red hoverable pulse">
+          <i class="large material-icons">account_circle</i>
+        </a>
+        <ul>
+          <li><a class="btn-floating blue hide-on-med-and-down"><i class="material-icons black-text">date_range</i></a></li>
+          <li><a onclick="scan()" class="btn-floating green"><i class="material-icons">fingerprint</i></a></li>
+          <li><a class="btn-floating green upload_data"><i class="material-icons">cloud_upload</i></a></li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>
