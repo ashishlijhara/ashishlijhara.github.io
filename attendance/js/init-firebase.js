@@ -25,5 +25,5 @@ function writeToFirebase(tablename, data){
     keyRef.child(element.Sl).set(element);
   });
   document.getElementById('uploadIndicator').style.display = 'none';
-  alert("Upload Complete!");
+  MSAssertion.toast({html:"Upload Complete!"});
  }

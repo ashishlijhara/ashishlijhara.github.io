@@ -1,13 +1,13 @@
 var codereader;
 let selectedDeviceId;
 window.addEventListener('load', function () {
-  const hints = new Map();
-  const formats = [ZXing.BarcodeFormat.CODE_39];
+  //const hints = new Map();
+  //const formats = [ZXing.BarcodeFormat.CODE_39];
  
-  hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS, formats);
-  hints.set(ZXing.DecodeHintType.TRY_HARDER, true);
-  codeReader = new ZXing.BrowserBarcodeReader()
-  codeReader.hints = hints;
+  //hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS, formats);
+  //hints.set(ZXing.DecodeHintType.TRY_HARDER, true);
+  codeReader = new ZXing.BrowserMultiFormatReader()//ZXing.BrowserBarcodeReader()
+  //codeReader.hints = hints;
   console.log('ZXing code reader initialized')
   codeReader.getVideoInputDevices()
     .then((videoInputDevices) => {
@@ -52,6 +52,7 @@ window.addEventListener('load', function () {
 
 function startCam(){
   codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
+    drawGraphics()
     if (result) {
       console.log(result)
       //document.getElementById('result').textContent = result.text

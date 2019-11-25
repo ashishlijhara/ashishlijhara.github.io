@@ -97,11 +97,13 @@ IDB.prototype.checkForCode=(code)=>{
     var me = this;
     request.onerror=(event)=>{
         console.log("Error: "+event.target.errorCode);
-        alert("Record not found!");
+        //alert(code+" not found!");
+        M.toast({html: code+" not found!"})
     }
     request.onsuccess=(event)=>{
         if(event.target.result == null){
-            alert('Record not found!')
+            //alert(code+' not found!')
+            M.toast({html: code+" not found!"})
             return
         }
         event.target.result.value.Shift_1 = idbInstance.getShift(2,8);
@@ -110,8 +112,9 @@ IDB.prototype.checkForCode=(code)=>{
         event.target.result.value.Shift_4 = idbInstance.getShift(20,2);
         var updateRequest = idbInstance.localStore.transaction(["sevadars"], "readwrite").objectStore("sevadars").put(event.target.result.value);
         updateRequest.onsuccess = event=>{
-            console.log("record updated");
-            alert("Record Updated!");
+            //console.log("record updated");
+            //alert(code+" Updated!");
+            M.toast({html: code+" Updated!"})
         }
         updateRequest.onerror = event=>{
             console.log("Error: "+event.target.errorCode);
