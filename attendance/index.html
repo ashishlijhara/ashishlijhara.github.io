@@ -89,8 +89,8 @@
               ctx.strokeStyle = 'red';
               ctx.lineWidth = 3;
               ctx.beginPath();
-		          ctx.moveTo(0, canvas.height * 0.5);
-              ctx.lineTo(canvas.width, canvas.height * 0.5);
+		          ctx.moveTo(0.1, canvas.height * 0.5);
+              ctx.lineTo(canvas.width-0.9, canvas.height * 0.5);
               ctx.stroke();
             }
          </script>
@@ -176,7 +176,7 @@
               <p>Click on scan to begin scanning.</p>
             </div>
               <div id="scanner" class="center-align"style="display:none">
-                  <video id="video" class="responsive-video" width="300" height="200" style="border: 1px solid gray"></video>
+                  <video id="video"  width="300" height="200" style="border: 1px solid gray"></video>
                   <canvas id="barcodecanvas" style="position:absolute;z-index:10;"></canvas>
                   <a id="switchCam" style="display:none;" class="waves-effect waves-light btn right"><i class="material-icons" style="font-size:36px">switch_camera</i>
                   </a>
