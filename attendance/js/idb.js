@@ -49,7 +49,7 @@ IDB.prototype.initIDB=(data, version)=>{
         idbInstance.db = event.target.result;
         //idbInstance.checkForCode("DL0860GA0121");
         if(event.target.result.version==version){
-            idbReady();
+            idbInstance.initLocalStore();
         }
     };
 
@@ -84,7 +84,6 @@ IDB.prototype.initIDB=(data, version)=>{
                 tx.oncomplete=()=>{
                     idbInstance.initLocalStore();
                     console.log("added");
-                    idbReady();
                 }
             }
         };
@@ -132,6 +131,7 @@ IDB.prototype.initLocalStore = function(){
         request.onsuccess = event=>{
           console.log("localstore ready");
           idbInstance.localStore = event.target.result;
+          idbReady();
         };
 
         request.onerror=event=>{

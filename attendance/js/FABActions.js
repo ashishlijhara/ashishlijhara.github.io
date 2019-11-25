@@ -3,7 +3,7 @@ initFABActions=()=>{
     Array.prototype.forEach.call(uploadButtons,element=>{
         element.addEventListener('click', event=>{
             if(window.navigator.onLine){
-                MSAssertion.toast({html:"Uploading. Please Wait."});
+                M.toast({html:"Uploading. Please Wait."});
                 document.getElementById('uploadIndicator').style.display = 'block';
                 idbInstance.processUpload();
                 return;
