@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Transmisssion Line</title>
+
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     <script src="./js/nav-menu.js"></script>
+     <link rel="stylesheet" href="./css/main.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4_TqjpByJzWzw8YY4kFGJdyTBWTLsDt4"></script>
+    <script>
+      var poles = {
+        1: {
+          center: {lat: 19.80233888888889, lng: 78.86866666666667},
+          color: 'red'
+        },
+        2: {
+          center: {lat: 19.80113888888889, lng: 78.87086666666667},
+          color: 'red'
+        },
+        3: {
+        center: {lat: 19.80233888888889, lng: 78.87046666666667},
+          color: 'yellow'
+        },
+        4: {
+            center: {lat: 19.80283888888889, lng: 78.86746666666667},
+          color: 'blue'
+        }
+      };
+      var critical = [];
+      var normal=[];
+      var alert=[];
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 18,
+          center: {lat: 19.80233888888889, lng: 78.86866666666667},
+          mapTypeId: 'satellite',
+          fullscreenControl: false,
+          streetViewControl: false
+        });
+
+        var imageBounds = {
+          north: 19.80433888888889,
+          south: 19.79892777777778,
+          east: 78.87196666666667,
+          west: 78.863125
+        };
+
+        var imageOverlay = new google.maps.GroundOverlay(
+            'ProjectName.jpg',
+            imageBounds);
+
+            imageOverlay.setMap(map);
+
+            for (var pole in poles) {
+            // Add the circle for this city to the map.
+            var poleCircle = new google.maps.Circle({
+                strokeColor: poles[pole].color,
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: poles[pole].color,
+                fillOpacity: 0.35,
+                map: map,
+                center: poles[pole].center,
+                radius: 10
+            });
+            switch(poles[pole].color){
+                case 'red': critical.push(poleCircle);
+                    break;
+                case 'yellow': alert.push(poleCircle);
+                    break;
+                case 'blue': normal.push(poleCircle);
+                    break;
+            }
+      }
+    }
+    
+      google.maps.event.addDomListener(window, 'load', initMap);
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+        <div id="map"></div>
+        <div id="over_map">
+                <a href="#" class="sidenav-trigger right p-t10-r-10" style="position:relative;z-index:-1000" data-target="menu">
+                        <i class="material-icons">menu</i>
+                      </a>
+          </div>
+          <div class="sidenav white right" id="menu">
+            <div class="input-field nav-pad topPad-20">
+                <select id="poles">
+                  <option value="1">All</option>
+                  <option value="2">Critical</option>
+                  <option value="3">Alert</option>
+                  <option value="4">Normal</option>
+                </select>
+                <label class="topPad-20">Select a Pole Type to view</label>
+              </div></li>
+            </div>
+        </div>
+  </body>
+</html>
