@@ -8,6 +8,10 @@ window.addEventListener('load', function () {
   //hints.set(ZXing.DecodeHintType.TRY_HARDER, true);
   codeReader = new ZXing.BrowserMultiFormatReader()//ZXing.BrowserBarcodeReader()
   //codeReader.hints = hints;
+  document.getElementById('video').addEventListener('playing',(event)=>{
+    drawGraphics()
+    console.log(event)
+  })
   console.log('ZXing code reader initialized')
   codeReader.getVideoInputDevices()
     .then((videoInputDevices) => {
@@ -52,7 +56,7 @@ window.addEventListener('load', function () {
 
 function startCam(){
   codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
-    drawGraphics()
+   
     if (result) {
       console.log(result)
       //document.getElementById('result').textContent = result.text
